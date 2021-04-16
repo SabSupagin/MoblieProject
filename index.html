@@ -12,9 +12,9 @@
 
     <div id="app">
         <div class="container">
-            <h1>Total    {{  Total  }}</h1>
+            <h1>MOBLIE</h1>
             <div class="row">
-                <div class="col-md-3" v-for="Test in Tests">
+                <div class="col-md-4" v-for="Test in Tests">
                     <div class="card h-100">
                     <center>
                         <img v-bind:src="Test.image" class="card-img-top" style="width: 50%;">
@@ -28,7 +28,7 @@
                     </center>
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <br><br>
                     <table class="table">
                         <thead class="thead-dark">
@@ -39,15 +39,23 @@
                             <th scope="col">ยอดรวม</th>
                             <th scope="col">ลบ</th>
                           </tr>
+    
                         </thead>
                         <tbody>
                         <tr v-for="carts in cart">
                             <td>{{  carts.name  }}</td>
-                            <td>{{  amount  }}</td>
+                            <td>{{  carts.qty  }}</td>
                             <td>{{  carts.price  }}</td>
-                            <td>{{  carts.total  }}</td>
+                            <td>{{  Total  }}</td>
                             <td>
-                                <button>Delete</button>
+                                <button class="btn btn-primary" @click="remove(Test)">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <center>
+                                <button class="btn btn-primary">ชำระเงิน</button>
+                                </center>
                             </td>
                         </tr>
                         </tbody>

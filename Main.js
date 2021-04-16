@@ -13,6 +13,7 @@ const app = Vue.createApp({
                     price:100,
                     image: './images/03.png',
                     active: false,
+                    qty:0
                 },
                 {
                     id:2,
@@ -20,6 +21,7 @@ const app = Vue.createApp({
                     price:150,
                     image: './images/03.png',
                     active: false,
+                    qty:0
                 },
                 {
                     id:3,
@@ -27,7 +29,25 @@ const app = Vue.createApp({
                     price:150,
                     image: './images/03.png',
                     active: false,
-                } 
+                    qty:0
+                },
+                {
+                    id:3,
+                    name: 'Realme',
+                    price:150,
+                    image: './images/03.png',
+                    active: false,
+                    qty:0
+                },
+                {
+                    id:3,
+                    name: 'Realme',
+                    price:150,
+                    image: './images/03.png',
+                    active: false,
+                    qty:0
+                },
+                
             ]
         }
     },
@@ -37,21 +57,25 @@ const app = Vue.createApp({
             location.href='login.html'
         },
         addtocart(Test) {
+
             this.amount += 1;
-               if(this.name==this.name){
+            this.Total += Test.price
+               
                 this.cart.push({
                     id:Test.id,
                     name:Test.name,
                     price:Test.price,
                     image:Test.image,
-                    qty:1,
+                    qty:Test.qty,
                     active:Test.active,
-                    total:Test.price
                 })
-               }
-               else{
-                   
-               }
+        },
+        remove(Test){
+            if(confirm("คุณต้องการลบใช่ไหม!")){
+                var index = this.cart.indexOf(Test)
+                this.cart.splice(index, 1)
+            }
+        
         }
         
     }
