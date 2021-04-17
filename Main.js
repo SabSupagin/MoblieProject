@@ -57,11 +57,19 @@ const app = Vue.createApp({
     },
 
     methods: {
-        logout(){
+        gopay(){
             location.href='pay.html'
         },
         GoCart(){
             location.href='Cart.html'
+        },
+        goback(){
+            location.href='index.html'
+        },
+        apcent(){
+            if(confirm("ยืนยันการสั่งซื้อ!!")){
+                location.href='index.html'
+            }
         },
         addtocart(Test) {
             Test.qty -= 1
@@ -78,7 +86,6 @@ const app = Vue.createApp({
                 })
         },
         remove(Test){
-        
             if(confirm("คุณต้องการลบใช่ไหม!")){
                 var index = this.cart.indexOf(Test)
                 this.cart.splice(index, 1)
