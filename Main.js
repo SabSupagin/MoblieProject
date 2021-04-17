@@ -3,7 +3,6 @@ const app = Vue.createApp({
         return{
             NameShop: 'Moblie',
             Total:0,
-            image: './images/2.jpg',
             cart: [],
             amount: 0,
             Tests:[
@@ -11,41 +10,46 @@ const app = Vue.createApp({
                     id:1,
                     name: 'Sumsung',
                     price:100,
-                    image: './images/03.png',
+                    image: './images/2.png',
                     active: false,
-                    qty:0
+                    qty:10,
+                    color: ["Black","Gold","Blue"]
                 },
                 {
                     id:2,
                     name: 'I Phone',
                     price:150,
-                    image: './images/03.png',
+                    image: './images/1.png',
                     active: false,
-                    qty:0
+                    qty:5,
+                    color: ["Black","Gold","Blue"]
                 },
                 {
                     id:3,
                     name: 'Realme',
                     price:150,
-                    image: './images/03.png',
+                    image: './images/5.png',
                     active: false,
-                    qty:0
+                    qty:9,
+                    color: ["Black","Gold","Blue"]
                 },
                 {
                     id:3,
-                    name: 'Realme',
+                    name: 'Xiaomi',
                     price:150,
-                    image: './images/03.png',
+                    image: './images/3.png',
                     active: false,
-                    qty:0
+                    qty:20,
+                    color: ["Black","Gold","Blue"]
                 },
                 {
                     id:3,
-                    name: 'Realme',
+                    name: 'Huawei',
                     price:150,
-                    image: './images/03.png',
+                    image: './images/2.png',
                     active: false,
-                    qty:0
+                    qty:0,
+                    color: ["Black","Gold","Blue"]
                 },
                 
             ]
@@ -54,11 +58,14 @@ const app = Vue.createApp({
 
     methods: {
         logout(){
-            location.href='login.html'
+            location.href='pay.html'
+        },
+        GoCart(){
+            location.href='Cart.html'
         },
         addtocart(Test) {
-
-            this.amount += 1;
+            Test.qty -= 1
+            this.amount += 1
             this.Total += Test.price
                
                 this.cart.push({
@@ -71,12 +78,13 @@ const app = Vue.createApp({
                 })
         },
         remove(Test){
+        
             if(confirm("คุณต้องการลบใช่ไหม!")){
                 var index = this.cart.indexOf(Test)
                 this.cart.splice(index, 1)
             }
-        
-        }
+
+        },
         
     }
 })
