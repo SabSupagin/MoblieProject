@@ -1,21 +1,70 @@
 <template>
-    
-        <h3>Login</h3>
-
+    <form>
+        <center>
+        <h1>Login</h1>
+        </center>
         <div class="form-group">
-           <label>Name</label>
-            <input type="text" class="form-control" v-model="name" >
+            <label for="exampleInputEmail1">Username</label>
+            <input type="Text" class="form-control" v-model="history.username" required>
         </div>
         <div class="form-group">
-            <label>ID</label>
-             <input type="text" class="form-control" v-model="id">
-         </div>
-
-        <button class="btn btn-success btn-block">Login</button>
-
-   
-    <router-link to="/">Back</router-link>
+            <label for="exampleInputPassword1">Password</label>
+            <input type="Text" class="form-control" v-model="password" required>
+        </div>
+        <center>
+        <div class="clearfix">
+        <router-link to="/register"><button class="btn btn-danger" style="margin-right: 10%">Sign in</button></router-link>
+        <button type="submit" class="btn btn-primary" @click.prevent="checklogin(history.username,password)">Login</button>
+        </div>
+        </center>
+    </form>
 </template>
+<script>
+import axios from 'axios';
+
+export default {
+    data(){
+        return{
+            history: {
+               username: '',
+               history: 'เข้าใช้งาน',
+               date: Date()
+            },
+            userpass: []
+        }
+    },
+    created(){
+        let apiURL = 'http://localhost:4000/api/show-user';
+        axios.get(apiURL).then(res => {
+            this.userpass = res.data
+        }).catch(error => {
+            console.log(error)
+        })
+    },
+    methods: {
+        checklogin(user,pass){
+            for(let i = 0;i <= this.userpass.length;i++){
+                if(pass == this.userpass[i].password && user == this.userpass[i].username){
+                    let apiURL = 'http://localhost:4000/api/create-history';
+
+                    axios.post(apiURL, this.history).then(() => {
+                        this.$router.push('/');
+                        this.history = {
+                            username: '',
+                            history: 'เข้าใช้งาน',
+                            date: Date()
+                        }
+                        }).catch(error => {
+                            console.log(error)
+                        })
+                        
+                    this.$router.push('/');
+                }
+            }
+        }
+    }
+}
+</script>
 
    
 

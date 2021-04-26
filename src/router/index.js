@@ -5,7 +5,8 @@ import stock from "@/components/Stock.vue";
 import history from "@/components/History.vue";
 import createorder from "@/components/createorder.vue";
 import editproduct from "@/components/editproduct.vue";
-
+import register from "@/components/register.vue";
+import shopproduct from "@/components/shopproduct.vue";
 
 const routes = [
   {
@@ -38,6 +39,17 @@ const routes = [
     name: "editproduct",
     component: editproduct,
   },
+  {
+    path: "/register",
+    name: "register",
+    component: register,
+  },
+  {
+    path: "/shopproduct",
+    name: "shopproduct",
+    component: shopproduct,
+  },
+ 
 ];
 
 const router = createRouter({

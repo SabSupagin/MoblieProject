@@ -7,10 +7,15 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <router-link class="nav-item nav-link active" to="/">Home <span class="sr-only">(current)</span></router-link>
-      <router-link to="/Login" class="nav-item nav-link">Shop</router-link>
-      <router-link to="/stock" class="nav-item nav-link">Stock</router-link>
-      <router-link to="/history" class="nav-item nav-link">history</router-link>
+      <router-link class="nav-item nav-link active" to="/">Home </router-link>
+      <router-link to="/shopproduct" class="nav-item nav-link disabled" v-if="username == ''">Shop</router-link>
+      <router-link to="/shopproduct" class="nav-item nav-link " v-else>Shop</router-link>
+      <router-link to="/stock" class="nav-item nav-link disabled" v-if="username == ''">Stock</router-link>
+      <router-link to="/stock" class="nav-item nav-link " v-else>Stock</router-link>
+      <router-link to="/history" class="nav-item nav-link disabled" v-if="username == ''">history</router-link>
+      <router-link to="/history" class="nav-item nav-link " v-else>history</router-link>
+      <router-link to="/login" class="nav-item nav-link active" style="margin-left:1070px" @click="login" v-if="username == ''">Login</router-link>
+      <router-link to="/" class="nav-item nav-link active" style="margin-left:1070px" @click="logout" v-else>Logout</router-link>
     </div>
   </div>
 </nav>
@@ -18,6 +23,25 @@
       <router-view></router-view>
     </div>
   </div>
-  </template>
+</template>
+<script>
+
+export default {
+    data(){
+        return{
+          username: ''
+        }
+    },
+    methods: {
+        login(){
+          this.username = 'user'
+          console.log(this.username)
+        },
+        logout(){
+          this.username = ''
+        }
+    }
+}
+</script>
     
   

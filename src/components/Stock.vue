@@ -6,10 +6,10 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                <th scope="col">รูป</th>
-                <th scope="col">ชื่อสินค้า</th>
+                <th scope="col">ขื่อสินค้า</th>
+                <th scope="col">รายละเอียดสินค้า</th>
+                <th scope="col">ยี่ห้อ</th>
                 <th scope="col">ราคาสินค้า</th>
-                <th scope="col">จำนวนสินค้า</th>
                 <th scope="col">จัดการสินค้า</th>
                 </tr>
             </thead>
@@ -20,14 +20,13 @@
                 <td>{{  product.type  }}</td>
                 <td>{{  product.price  }}</td>
                 <td>
-                <router-link to="/editproduct"><button style="margin-right: 10%" class="btn btn-warning">Edit</button></router-link>
                 <button class="btn btn-danger" @click.prevent="deleteProduct(product._id)">Delete</button>
                 </td>
                 </tr>
             </tbody>
         </table>
         <center>
-        <router-link to="/createorder"><button class="btn btn-secondary">Add order</button></router-link>
+        <router-link to="/createorder"><button class="btn btn-secondary" @click="totalstock()">Add order</button></router-link>
         </center>
     </div>
 </template>
@@ -37,11 +36,12 @@ import axios from 'axios';
 export default {
     data(){
         return{
-            products: []
+            products: [],
+            total: 0
         }
     },
     created(){
-        let apiURL = 'http://localhost:4000/api';
+        let apiURL = 'http://localhost:4000/api/show-stock';
         axios.get(apiURL).then(res => {
             this.products = res.data
         }).catch(error => {
@@ -60,6 +60,10 @@ export default {
                     console.log(error)
                 })
             }
+        },
+        totalstock(){
+            this.total = this.products.length
+            console.log(this.total)
         }
     }
 }
